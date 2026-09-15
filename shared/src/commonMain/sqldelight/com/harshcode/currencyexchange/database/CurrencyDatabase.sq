@@ -1,0 +1,15 @@
+CREATE TABLE CurrencyTable (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    code TEXT NOT NULL UNIQUE,
+    value REAL NOT NULL
+);
+
+insertCurrency:
+INSERT OR REPLACE INTO CurrencyTable(code, value)
+VALUES (?, ?);
+
+selectAllCurrencies:
+SELECT * FROM CurrencyTable;
+
+deleteAllCurrencies:
+DELETE FROM CurrencyTable;
