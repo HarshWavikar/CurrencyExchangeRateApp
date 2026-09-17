@@ -34,6 +34,9 @@ utilizing Koin Dependency Injection, SQLDelight, and Ktor.
 </table>
 
 <p align="center">
+  <video src="https://github.com/user-attachments/assets/your-uploaded-video-id" controls width="300"></video>
+</p>
+<p align="center">
   <i>
     🎯 <b>Main Features Showcase:</b> Seamless light/dark mode compliance, dynamic edge-to-edge UI layouts drawing beautifully under the system status bars, flag-waving custom modifiers, and interactive instant-rate calculations.
   </i>
