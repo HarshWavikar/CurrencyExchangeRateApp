@@ -41,7 +41,7 @@ utilizing Koin Dependency Injection, SQLDelight, and Ktor.
   </tr>
   <tr>
     <td align="center">
-      <img src="screenshots/android_demo.gif" width="250" alt="Android Demo" />
+      <img src="screenshots/android.gif" width="800" alt="Android Demo" />
     </td>
   </tr>
 </table>
