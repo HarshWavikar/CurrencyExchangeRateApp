@@ -35,17 +35,13 @@ utilizing Koin Dependency Injection, SQLDelight, and Ktor.
 
 <table align="center">
   <tr>
-    <th align="center">Android Recording</th>
+    <th align="center">Android Demo</th>
     <th width="24"></th>
-    <th align="center">iOS Recording</th>
+    <th align="center">iOS Demo</th>
   </tr>
   <tr>
     <td align="center">
-      <video src="screenshots/android_recording.mp4" width="250" controls></video>
-    </td>
-    <td></td>
-    <td align="center">
-      <video src="screenshots/ios_recording.mov" width="250" controls></video>
+      <img src="screenshots/android_demo.gif" width="250" alt="Android Demo" />
     </td>
   </tr>
 </table>
