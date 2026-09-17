@@ -8,7 +8,7 @@ class CurrencyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         initializeKoin {
-            androidContext(this@CurrencyApplication)
+            androidContext(androidContext = this@CurrencyApplication)
         }
     }
 }

@@ -8,7 +8,7 @@ insertCurrency:
 INSERT OR REPLACE INTO CurrencyTable(code, value)
 VALUES (?, ?);
 
-selectAllCurrencies:
+getAllCurrencies:
 SELECT * FROM CurrencyTable;
 
 deleteAllCurrencies:

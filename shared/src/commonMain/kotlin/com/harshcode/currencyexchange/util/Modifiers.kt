@@ -15,7 +15,7 @@ import kotlin.math.sin
 fun Modifier.wavingFlag(
     amplitude: Dp = 4.dp,
     frequency: Float = 0.02f,
-    durationMillis: Int = 1500
+    durationMillis: Int = 1800
 ): Modifier {
     val infiniteTransition = rememberInfiniteTransition(label = "flagWave")
     val phase by infiniteTransition.animateFloat(
@@ -30,23 +30,29 @@ fun Modifier.wavingFlag(
 
     return this.drawWithContent {
         val amplitudePx = amplitude.toPx()
-        val sliceWidth = 2f // Width of each slice in pixels
+        val sliceWidth = 8f // Increased slice width to be much more efficient and prevent Metal command buffer overflow/crashes on iOS
 
-        for (x in 0 until size.width.toInt() step sliceWidth.toInt()) {
-            val offsetX = x.toFloat()
-            val offsetY = amplitudePx * sin(frequency * offsetX + phase)
+        val widthInt = size.width.toInt()
+        val stepInt = sliceWidth.toInt()
+        if (widthInt > 0 && stepInt > 0) {
+            for (x in 0 until widthInt step stepInt) {
+                val offsetX = x.toFloat()
+                val offsetY = amplitudePx * sin(frequency * offsetX + phase)
 
-            clipRect(
-                left = offsetX,
-                top = -amplitudePx, // Expand top/bottom to prevent clipping the wave itself
-                right = offsetX + sliceWidth,
-                bottom = size.height + amplitudePx
-            ) {
-                drawContext.canvas.save()
-                drawContext.canvas.translate(0f, offsetY)
-                this@drawWithContent.drawContent()
-                drawContext.canvas.restore()
+                clipRect(
+                    left = offsetX,
+                    top = -amplitudePx, // Expand top/bottom to prevent clipping the wave itself
+                    right = offsetX + sliceWidth,
+                    bottom = size.height + amplitudePx
+                ) {
+                    drawContext.canvas.save()
+                    drawContext.canvas.translate(0f, offsetY)
+                    this@drawWithContent.drawContent()
+                    drawContext.canvas.restore()
+                }
             }
+        } else {
+            this@drawWithContent.drawContent()
         }
     }
 }

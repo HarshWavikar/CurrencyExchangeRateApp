@@ -70,6 +70,7 @@ sql-delight-common = { module = "app.cash.sqldelight:runtime", version.ref = "sq
 sql-delight-common-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
 sql-delight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 sql-delight-ios = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }

@@ -8,6 +8,7 @@ import androidx.compose.runtime.snapshots.SnapshotStateList
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.harshcode.currencyexchange.domain.CurrencyApiService
+import com.harshcode.currencyexchange.domain.LocalRepository
 import com.harshcode.currencyexchange.domain.PreferenceRepository
 import com.harshcode.currencyexchange.domain.model.Currency
 import com.harshcode.currencyexchange.domain.model.RateStatus
@@ -15,6 +16,7 @@ import com.harshcode.currencyexchange.domain.model.RequestState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlin.time.Clock
 
@@ -27,6 +29,7 @@ sealed class HomeUiEvent() {
 
 class HomeViewModel(
     private val preferences: PreferenceRepository,
+    private val localDb: LocalRepository,
     private val api: CurrencyApiService
 ) : ScreenModel {
 
@@ -82,17 +85,44 @@ class HomeViewModel(
 
     private suspend fun fetchNewRates() {
         try {
-            val latestRates = api.getLatestExchangeRates()
-            if (latestRates.isSuccess()) {
-                _allCurrencies.clear()
-                println("HomeViewModel rates fetched: ${latestRates.getSuccessData()}")
-                _allCurrencies.addAll(latestRates.getSuccessData())
-            } else if (latestRates.isError()) {
-                println("HomeViewModel error fetching rates: ${latestRates.getError()}")
+            val localCache = localDb.readCurrencyData().first()
+            if (localCache.isSuccess()) {
+                if (localCache.getSuccessData().isNotEmpty()) {
+                    println("HomeViewModel: Database is full ")
+                    _allCurrencies.clear()
+                    _allCurrencies.addAll(localCache.getSuccessData())
+                    if (!preferences.isDataFresh(Clock.System.now().toEpochMilliseconds())) {
+                        println("HomeViewModel: Data not fresh ❌...")
+                        cacheData()
+                    } else {
+                        println("HomeViewModel: Data is fresh ✅...")
+                    }
+                } else {
+                    println("HomeViewModel: Database needs data")
+                    cacheData()
+                }
+            }else if (localCache.isError()){
+                println("HomeViewModel: Error reading local database - ${localCache.getError()}")
             }
             getRateStatus()
         } catch (e: Exception) {
-            println("HomeViewModel fetchNewRates exception: ${e.message}")
+            println("HomeViewModel: ${e.message}")
+        }
+    }
+
+    private suspend fun cacheData() {
+        val fetchData = api.getLatestExchangeRates()
+        if (fetchData.isSuccess()) {
+            localDb.cleanUp()
+            fetchData.getSuccessData().forEach {
+                println("HomeViewModel: Adding - ${it.code}")
+                localDb.insertCurrencyData(it)
+            }
+            println("HomeViewModel: Updating _allCurrencies")
+            _allCurrencies.clear()
+            _allCurrencies.addAll(fetchData.getSuccessData())
+        } else if (fetchData.isError()) {
+            println("HomeViewModel: Fetching Failed ${fetchData.getError()}")
         }
     }
 

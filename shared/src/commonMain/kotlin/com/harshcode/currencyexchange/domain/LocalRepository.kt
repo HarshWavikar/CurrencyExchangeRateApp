@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalRepository {
     suspend fun insertCurrencyData(currency: Currency)
-    fun getCurrencyData(): Flow<RequestState<Currency>>
+    fun readCurrencyData(): Flow<RequestState<List<Currency>>>
     suspend  fun cleanUp()
 }

@@ -7,6 +7,32 @@ A clean and efficient **Currency Exchange & Conversion** application built using
 ## 📸 Screenshots & Overview
 
 <p align="center">
+  <table>
+    <tr>
+      <th align="center">Android — Light</th>
+      <th align="center">Android — Dark</th>
+    </tr>
+    <tr>
+      <td><img src="screenshots/android_light.png" width="1547"/></td>
+      <td><img src="screenshots/android_dark.png" width="1547"/></td>
+    </tr>
+    <tr>
+      <th align="center">iOS — Light</th>
+      <th align="center">iOS — Dark</th>
+    </tr>
+    <tr>
+      <td><img src="screenshots/ios_light.png" width="1320"/></td>
+      <td><img src="screenshots/ios_dark.png" width="1320"/></td>
+    </tr>
+  </table>
+</p>
+
+<p align="center">
+  <i>
+    🎯 <b>Main Features Showcase:</b> Seamless light/dark mode compliance, dynamic edge-to-edge UI layouts drawing beautifully under the system status bars, flag-waving custom modifiers, and interactive instant-rate calculations.
+  </i>
+</p>
+<p align="center">
   <img src="screenshots/exchange_preview.png" width="350" title="Currency Exchange Conversion Screen" alt="Currency Exchange Conversion Screen">
 </p>
 <p align="center">
