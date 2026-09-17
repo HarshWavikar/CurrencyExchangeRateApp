@@ -45,7 +45,7 @@ utilizing Koin Dependency Injection, SQLDelight, and Ktor.
     </td>
     <td></td>
     <td align="center">
-      <img src="screenshots/ios_demo.gif" width="300" alt="iOS Demo" />
+      <img src="screenshots/currency_ios.gif" width="300" alt="iOS Demo" />
     </td>
   </tr>
   </tr>
