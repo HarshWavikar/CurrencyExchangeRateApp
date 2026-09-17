@@ -53,6 +53,7 @@ import com.harshcode.currencyexchange.ui.headerColor
 import com.harshcode.currencyexchange.ui.staleColor
 import com.harshcode.currencyexchange.util.displayCurrentDateTime
 import currencyexchange.shared.generated.resources.Res
+import currencyexchange.shared.generated.resources.currency
 import currencyexchange.shared.generated.resources.exchange_illustration
 import currencyexchange.shared.generated.resources.refresh_ic
 import currencyexchange.shared.generated.resources.switch_ic
@@ -107,7 +108,7 @@ fun RatesStatus(
 
         Image(
             modifier = Modifier.size(50.dp),
-            painter = painterResource(Res.drawable.exchange_illustration),
+            painter = painterResource(Res.drawable.currency),
             contentDescription = ""
         )
         Column(

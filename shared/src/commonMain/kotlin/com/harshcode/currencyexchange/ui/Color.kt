@@ -15,7 +15,7 @@ val primaryColor
 
 val headerColor
     @Composable
-    get() = if (isSystemInDarkTheme()) Color(0xFF0C0C0C) else Color(0xFF283556)
+    get() = if (isSystemInDarkTheme()) Color(0xFA0C0C0C) else Color(0xFF0C0C0CFA)
 
 val surfaceColor
     @Composable
