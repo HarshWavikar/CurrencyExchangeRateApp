@@ -33,6 +33,23 @@ utilizing Koin Dependency Injection, SQLDelight, and Ktor.
   </tr>
 </table>
 
+<table align="center">
+  <tr>
+    <th align="center">Android Recording</th>
+    <th width="24"></th>
+    <th align="center">iOS Recording</th>
+  </tr>
+  <tr>
+    <td align="center">
+      <video src="screenshots/android_recording.mp4" width="250" controls></video>
+    </td>
+    <td></td>
+    <td align="center">
+      <video src="screenshots/ios_recording.mov" width="250" controls></video>
+    </td>
+  </tr>
+</table>
+
 <p align="center">
   <video src="https://github.com/user-attachments/assets/your-uploaded-video-id" controls width="300"></video>
 </p>
