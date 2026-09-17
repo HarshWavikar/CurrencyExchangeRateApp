@@ -169,16 +169,27 @@ fun HomeBody(
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
-                    Text(
+                    Column (
                         modifier = Modifier.weight(0.45f),
-                        text = amount.toString() + " " + CurrencyCode.valueOf(source.getSuccessData().code).symbol,
-                        fontSize = MaterialTheme.typography.headlineLarge.fontSize,
-                        fontFamily = GetBebasFontFamily(),
-                        color = if (isSystemInDarkTheme()) Color.White else Color.Black,
-                        textAlign = TextAlign.Center
-                    )
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ){
+                        Text(
+                            text = amount.toString() + " " + CurrencyCode.valueOf(source.getSuccessData().code).symbol,
+                            fontSize = MaterialTheme.typography.headlineLarge.fontSize,
+                            fontFamily = GetBebasFontFamily(),
+                            color = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                            textAlign = TextAlign.Center
+                        )
+                        Text(
+                            text = CurrencyCode.valueOf(source.getSuccessData().code).currencyName,
+                            fontSize = MaterialTheme.typography.bodyMediumEmphasized.fontSize,
+                            maxLines = 2,
+                            color = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                     Text(
                         modifier = Modifier.weight(0.1f),
                         text = " = ",
@@ -187,14 +198,25 @@ fun HomeBody(
                         color = if (isSystemInDarkTheme()) Color.White else Color.Black,
                         textAlign = TextAlign.Center
                     )
-                    Text(
+                    Column (
                         modifier = Modifier.weight(0.45f),
-                        text = "${animateExchangeAmount.round(2)} ${CurrencyCode.valueOf(target.getSuccessData().code).symbol} ",
-                        fontSize = MaterialTheme.typography.headlineLarge.fontSize,
-                        fontFamily = GetBebasFontFamily(),
-                        color = if (isSystemInDarkTheme()) Color.White else Color.Black,
-                        textAlign = TextAlign.Center
-                    )
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ){
+                        Text(
+                            text = "${animateExchangeAmount.round(2)} ${CurrencyCode.valueOf(target.getSuccessData().code).symbol} ",
+                            fontSize = MaterialTheme.typography.headlineLarge.fontSize,
+                            fontFamily = GetBebasFontFamily(),
+                            color = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                            textAlign = TextAlign.Center
+                        )
+                        Text(
+                            text = CurrencyCode.valueOf(target.getSuccessData().code).currencyName,
+                            fontSize = MaterialTheme.typography.bodyMediumEmphasized.fontSize,
+                            maxLines = 2,
+                            color = if (isSystemInDarkTheme()) Color.White else Color.Black,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
                 Spacer(modifier = Modifier.height(30.dp))
                 Column(
@@ -217,7 +239,7 @@ fun HomeBody(
                                         source = sourceRate,
                                         target = targetRate
                                     ).toCleanString(4)
-                                }" + target.getSuccessData().code
+                                } " + target.getSuccessData().code
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                     ExchangeRateText(
@@ -227,7 +249,7 @@ fun HomeBody(
                                         source = targetRate,
                                         target = sourceRate
                                     ).toCleanString(4)
-                                }" + source.getSuccessData().code
+                                } " + source.getSuccessData().code
                     )
                 }
             }
